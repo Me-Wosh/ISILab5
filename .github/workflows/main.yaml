@@ -1,0 +1,22 @@
+name: Backend tests
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v5
+    - name: Set up .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 10.0.x
+    - name: Install dependencies
+      run: dotnet restore BlogApp.Backend/BlogApp.Backend.slnx
+    - name: Build
+      run: dotnet build BlogApp.Backend/BlogApp.Backend.slnx --no-restore
+    - name: Lint
+      run: dotnet format BlogApp.Backend/BlogApp.Backend.slnx --verify-no-changes
+    - name: Run tests
+      run: dotnet test BlogApp.Backend/BlogApp.Backend.slnx --no-build
