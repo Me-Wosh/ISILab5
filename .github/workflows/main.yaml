@@ -16,9 +16,9 @@ jobs:
         cache-dependency-path: BlogApp.Backend/BlogApp.Backend.slnx
     - name: Install dependencies
       run: dotnet restore BlogApp.Backend/BlogApp.Backend.slnx
-    - name: Build
-      run: dotnet build BlogApp.Backend/BlogApp.Backend.slnx --no-restore
     - name: Lint
       run: dotnet format BlogApp.Backend/BlogApp.Backend.slnx --verify-no-changes
+    - name: Build
+      run: dotnet build BlogApp.Backend/BlogApp.Backend.slnx --no-restore
     - name: Run tests
       run: dotnet test BlogApp.Backend/BlogApp.Backend.slnx --no-build
