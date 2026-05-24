@@ -30,7 +30,7 @@ public class PostServiceTests
         var posts = await service.GetAllPostsAsync(CancellationToken.None);
 
         // Assert
-        Assert.NotNull(posts);
+        Assert.NotEmpty(posts);
         Assert.Equal(3, posts.Count());
     }
 
@@ -38,7 +38,7 @@ public class PostServiceTests
     [InlineData(1)]
     [InlineData(2)]
     [InlineData(3)]
-    public async Task GetPostByIdAsync_ReturnsPostWithMatchingId(int id)
+    public async Task GetPostByIdAsync_ReturnsPost_GivenExistingId(int id)
     {
         // Arrange
         var service = new PostService(_dbContext);
