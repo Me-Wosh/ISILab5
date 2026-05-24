@@ -17,7 +17,7 @@ jobs:
     - name: Install dependencies
       run: dotnet restore BlogApp.Backend/BlogApp.Backend.slnx
     - name: Lint
-      run: dotnet format BlogApp.Backend/BlogApp.Backend.slnx --verify-no-changes
+      run: dotnet format BlogApp.Backend/BlogApp.Backend.slnx --verify-no-changes --no-restore
     - name: Build
       run: dotnet build BlogApp.Backend/BlogApp.Backend.slnx --no-restore
     - name: Run tests
