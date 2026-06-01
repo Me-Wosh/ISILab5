@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<BlogAppDbContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("BlogAppDb"));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("BlogAppDb"));
 });
 
 builder.Services.AddScoped<PostService>();

@@ -15,7 +15,5 @@ RUN dotnet publish src/BlogApp.csproj --no-restore --output /app/publish
 # Use lightweight alpine image for runtime
 FROM mcr.microsoft.com/dotnet/aspnet:10.0-alpine@sha256:60eb031b554df75a4b9f358290a2fa15d8961a3bc79b47bb34a00e31f7b78c69
 WORKDIR /app
-RUN apk add --no-cache icu-libs
-ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
 COPY --from=build /app/publish .
 ENTRYPOINT ["dotnet", "BlogApp.dll"]

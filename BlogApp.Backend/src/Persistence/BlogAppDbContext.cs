@@ -22,11 +22,11 @@ public class BlogAppDbContext(DbContextOptions<BlogAppDbContext> options) : DbCo
 
     private void UpdateTimeStamps()
     {
-        var modifiedEntries = ChangeTracker.Entries<Post>().Where(e => e.State is EntityState.Added);
+        var modifiedEntries = ChangeTracker.Entries<Post>().Where(e => e.State is EntityState.Modified);
 
         foreach (var modifiedEntry in modifiedEntries)
         {
-            modifiedEntry.Entity.CreatedAt = DateTime.Now;
+            modifiedEntry.Entity.UpdatedAt = DateTime.UtcNow;
         }
     }
 }

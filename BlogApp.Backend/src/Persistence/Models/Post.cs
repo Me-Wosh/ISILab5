@@ -10,6 +10,6 @@ public class Post
     public required string Content { get; set; }
     public Author Author { get; set; } = null!;
     public int AuthorId { get; set; }
-    public DateTime CreatedAt { get; set; }
-    public DateTime PublishedAt { get; set; } = DateTime.Now;
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
 }
