@@ -16,5 +16,5 @@ RUN dotnet publish src/BlogApp.csproj --no-restore --output /app/publish
 FROM mcr.microsoft.com/dotnet/aspnet:10.0-alpine@sha256:60eb031b554df75a4b9f358290a2fa15d8961a3bc79b47bb34a00e31f7b78c69
 WORKDIR /app
 COPY --from=build /app/publish .
-ENV ASPNETCORE_HTTP_PORTS=http://0.0.0.0:$PORT
+ENV ASPNETCORE_URLS=http://+:$PORT
 ENTRYPOINT ["dotnet", "BlogApp.dll"]

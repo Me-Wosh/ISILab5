@@ -17,7 +17,7 @@ builder.Services.AddHealthChecks();
 
 var app = builder.Build();
 
-app.MapHealthChecks("healthz");
+app.MapHealthChecks("/healthz");
 
 using (var scope = app.Services.CreateScope())
 {
