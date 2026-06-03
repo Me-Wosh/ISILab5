@@ -49,6 +49,7 @@ jobs:
 
     - name: Deployment health check
       if: github.ref == 'refs/heads/main'
+      timeout-minutes: 10
       run: |
         URL="https://blogappweb.onrender.com/healthz"
         TIMEOUT=600
@@ -58,7 +59,7 @@ jobs:
         while [ $ELAPSED -lt $TIMEOUT ]; do
           sleep 30
 
-          STATUS=$(curl -s -o /dev/null -w "%{http_code}" $URL || true)
+          STATUS=$(curl -s -m 5 -o /dev/null -w "%{http_code}" $URL || true)
           if [ $STATUS -eq 200 ]; then
             exit 0
           fi
