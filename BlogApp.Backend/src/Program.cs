@@ -13,8 +13,17 @@ builder.Services.AddDbContext<BlogAppDbContext>(options =>
 });
 
 builder.Services.AddScoped<PostService>();
+builder.Services.AddHealthChecks();
 
 var app = builder.Build();
+
+app.MapHealthChecks("healthz");
+
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<BlogAppDbContext>();
+    db.Database.Migrate();
+}
 
 var group = app.MapGroup("/api")
     .DisableAntiforgery();
